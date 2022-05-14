@@ -12,8 +12,10 @@ app.get("/", async (req, res) => {
 
 app.get("/edit", async (req, res) => {
   try {
+    const IFRAME_URL = process.env.IFRAME_URL;
+    const DB_UID = IFRAME_URL.split('/')[4];
     const dbData = await axios.get(
-      `http://localhost:3000/api/dashboards/uid/${process.env.DB_UID}`,
+      `http://localhost:3000/api/dashboards/uid/${DB_UID}`,
       {
         headers: {
           Authorization: `Bearer ${process.env.API_TOKEN}`,
@@ -30,7 +32,7 @@ app.get("/edit", async (req, res) => {
         graphColor: defaultConfig.color.fixedColor,
       };
       return res.render("edit", {
-        IFRAME_URL: process.env.IFRAME_URL,
+        IFRAME_URL,
         ...formData,
       });
     }
@@ -40,14 +42,17 @@ app.get("/edit", async (req, res) => {
       drawStyle: formData.drawStyle,
       lineWidth: formData.lineWidth,
     });
-    defaultConfig.color.fixedColor = formData.graphColor;
+    defaultConfig.color = {
+      mode: 'fixed',
+      fixedColor: formData.graphColor
+    };
 
     await axios.post("http://localhost:3000/api/dashboards/db", dbData.data, {
       headers: {
         Authorization: `Bearer ${process.env.API_TOKEN}`,
       },
     });
-    res.render("edit", { IFRAME_URL: process.env.IFRAME_URL, ...formData });
+    res.render("edit", { IFRAME_URL, ...formData });
   } catch (err) {
     res.send(err);
   }
