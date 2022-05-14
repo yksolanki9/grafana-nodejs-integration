@@ -1,0 +1,40 @@
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container-block {
+  height: 100%;
+  margin: 24px;
+}
+
+.custom-vr {
+  margin: 10px 20px;
+}
+
+.form-group {
+  margin-top: 20px;
+}
+
+#graphColor {
+  width: 100%;
+}
+
+.btn-custom {
+  margin: 30px auto;
+  width: 200px;
+}
+
+.form-container {
+  margin: auto;
+}
+
+.iframe-container {
+  display: flex;
+  align-items: center;
+}
+
+.iframe-container iframe {
+  height: 60%;
+  width: 100%;
+}
