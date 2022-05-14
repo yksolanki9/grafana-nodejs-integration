@@ -30,6 +30,7 @@ app.get("/edit", async (req, res) => {
         drawStyle: defaultConfig.custom.drawStyle,
         lineWidth: defaultConfig.custom.lineWidth,
         graphColor: defaultConfig.color.fixedColor,
+        title: dbData.data.dashboard.panels[0].title,
       };
       return res.render("edit", {
         IFRAME_URL,
@@ -46,6 +47,7 @@ app.get("/edit", async (req, res) => {
       mode: 'fixed',
       fixedColor: formData.graphColor
     };
+    dbData.data.dashboard.panels[0].title = formData.title;
 
     await axios.post("http://localhost:3000/api/dashboards/db", dbData.data, {
       headers: {
