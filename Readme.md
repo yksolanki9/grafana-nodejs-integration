@@ -1,5 +1,12 @@
 # About Grafana
 Grafana is an open source solution for running data analytics, pulling up metrics that make sense of the massive amount of data & to monitor our apps with the help of cool customizable dashboards.
+
+## About the app
+This app gives demonstrates how we can embed a grafana panel into our node app and display it on our webpage as well as edit the properties of the grafana chart. This app is built using NodeJS, ExpressJS and EJS templating engine.
+
+### UI Preview
+![Grafana Panel](snapshots/grafana-panel.png)
+
 ## Project Setup
 - Clone the github repo
 - Run `npm i` and it will install all the project dependencies
